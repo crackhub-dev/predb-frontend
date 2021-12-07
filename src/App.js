@@ -111,6 +111,9 @@ return (
       <div className="w-100">
       <h1>predb</h1><Link to="/about"><small>About</small></Link> 
       {"\n"}
+      | {"\n"}<Link to="/api"><small>API Docs</small></Link> 
+      
+      {"\n"}
       <small><i>proudly indexing {releaseCount.length} releases</i></small>
       <form className="search-form " onSubmit={getSearch}>
         <input type="text" className="search-bar form-control" value={search} onChange={updateSearch} placeholder="Start typing to search for releases!"/>
