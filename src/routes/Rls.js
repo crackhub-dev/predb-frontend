@@ -9,12 +9,12 @@ export default function Rls() {
     const [release, setRelease] = useState([]);
     const [date, setDate] = useState([]);
     const getData = async ()=>{
-        const response = await fetch(`http://pre-api.crackhub.site:8080/api/rls/${params.id}`);
+        const response = await fetch(`https://api.predb.xyz/api/rls/${params.id}`);
         const data = await response.json();      
         setRelease(data);
       };
     const getDate = async ()=>{
-        const response = await fetch(`http://pre-api.crackhub.site:8080/api/getDate/${params.id}`);
+        const response = await fetch(`https://api.predb.xyz/api/getDate/${params.id}`);
         const data = await response.json();      
         setDate(data.date);
       }
