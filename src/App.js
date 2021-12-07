@@ -8,12 +8,16 @@ import {
   Routes,
   Link
 } from "react-router-dom";
+import FormCheckInput from 'react-bootstrap/esm/FormCheckInput';
+import FormCheckLabel from 'react-bootstrap/esm/FormCheckLabel';
 function App() {
   const [releases, setReleases] = useState([]);
   const [search, setSearch] = useState ('');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
   const [releaseCount, setReleaseCount] = useState(0);
+  const [update, setUpdate] = useState(JSON.parse(localStorage.getItem("update")));
+
   useEffect( ()=>{
     getData();
   }, [query])
@@ -26,6 +30,10 @@ function App() {
     
   } , [page])
   useEffect( ()=>{
+    localStorage.setItem("update", JSON.stringify(update));
+  }
+  , [update])
+  useEffect( ()=>{
     const interval = setInterval(()=>{
       getData();
     }, 6000);
@@ -35,11 +43,14 @@ function App() {
     if(page > 1){
       clearInterval(interval);
     }
+    if(update == true){
+      clearInterval(interval);
+    }
     return ()=>{
       clearInterval(interval);
     }
   }
-  , [query, page])
+  , [query, page, update])
   useEffect( ()=>{
     getReleaseCount();
     const interval = setInterval(()=>{
@@ -99,14 +110,12 @@ function App() {
     const prevp = page - 1;
     setPage(prevp);
   }
-  const disableUpdates = () =>{
-    clearInterval(getData);
-  }
   const getReleaseCount = async () =>{
     const response = await fetch(`https://api.predb.xyz/api/length`);
     const data = await response.json();
     setReleaseCount(data);
   }
+  
 return (
   <div className="app">
     
@@ -118,6 +127,14 @@ return (
       | {"\n"}<Link to="/api"><small>API Docs</small></Link> 
       
       {"\n"}
+      <div class="control switch">
+    <FormCheckInput type="checkbox" id="switch" onChange={(e) => {
+      setUpdate(e.target.checked);
+    }} checked={update}/> 
+    {"\n"}
+    <FormCheckLabel className="switch-label" htmlFor="switch">Disable Automatic Updates</FormCheckLabel>
+
+</div>
       <small><i>proudly indexing {releaseCount.length} releases</i></small>
       <form className="search-form " onSubmit={getSearch}>
         <input type="text" className="search-bar form-control" value={search} onChange={updateSearch} placeholder="Start typing to search for releases!"/>
