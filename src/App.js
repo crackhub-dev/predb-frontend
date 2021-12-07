@@ -8,13 +8,12 @@ import {
   Routes,
   Link
 } from "react-router-dom";
-
 function App() {
   const [releases, setReleases] = useState([]);
   const [search, setSearch] = useState ('');
   const [query, setQuery] = useState('');
   const [page, setPage] = useState(1);
-
+  const [releaseCount, setReleaseCount] = useState(0);
   useEffect( ()=>{
     getData();
   }, [query])
@@ -26,21 +25,46 @@ function App() {
     }
     
   } , [page])
+  useEffect( ()=>{
+    const interval = setInterval(()=>{
+      getData();
+    }, 6000);
+    if(query != ''){
+      clearInterval(interval);
+    }
+    return ()=>{
+      clearInterval(interval);
+    }
+  }
+  , [query])
+  useEffect( ()=>{
+    getReleaseCount();
+    const interval = setInterval(()=>{
+      getReleaseCount();
+    }, 6000);
+    if(query != ''){
+      clearInterval(interval);
+    }
+    return ()=>{
+      clearInterval(interval);
+    }
+  }
+  , [query])
 
   const getData = async ()=>{
     if(query === '') {
-      const response = await fetch(`BACKEND_API_URL/api/releases?p=${page}&l=50`);
+      const response = await fetch(`https://api.predb.xyz/api/releases?p=${page}&l=50`);
       const data = await response.json();
       setReleases(data);
 
     }
     if(query !== '') {
-      const response = await fetch(`BACKEND_API_URL/api/search?q=${query}&p=${page}&l=50`);
+      const response = await fetch(`https://api.predb.xyz/api/search?q=${query}&p=${page}&l=50`);
       const data = await response.json();
       setReleases(data);
     }
     
-  
+    
   }
   const updateSearch = e =>{
     setSearch(e.target.value);
@@ -71,14 +95,23 @@ function App() {
     const prevp = page - 1;
     setPage(prevp);
   }
-
+  const disableUpdates = () =>{
+    clearInterval(getData);
+  }
+  const getReleaseCount = async () =>{
+    const response = await fetch(`https://api.predb.xyz/api/length`);
+    const data = await response.json();
+    setReleaseCount(data);
+  }
 return (
   <div className="app">
     
 
     <Container className="d-flex justify-content-center ">
       <div className="w-100">
-      <h1>predb</h1>  
+      <h1>predb</h1><Link to="/about"><small>About</small></Link> 
+      {"\n"}
+      <small><i>proudly indexing {releaseCount.length} releases</i></small>
       <form className="search-form " onSubmit={getSearch}>
         <input type="text" className="search-bar form-control" value={search} onChange={updateSearch} placeholder="Start typing to search for releases!"/>
         <Button className="btn btn-danger" onClick={resetSearch}>Reset Search</Button>
