@@ -32,11 +32,14 @@ function App() {
     if(query != ''){
       clearInterval(interval);
     }
+    if(page > 1){
+      clearInterval(interval);
+    }
     return ()=>{
       clearInterval(interval);
     }
   }
-  , [query])
+  , [query, page])
   useEffect( ()=>{
     getReleaseCount();
     const interval = setInterval(()=>{
@@ -49,7 +52,7 @@ function App() {
       clearInterval(interval);
     }
   }
-  , [query])
+  , [query, page])
 
   const getData = async ()=>{
     if(query === '') {
@@ -78,6 +81,7 @@ function App() {
   const resetSearch = () =>{
     setSearch('');
     setQuery('');
+    setPage(1);
   }
   const nextPage = () =>{
     const nextp = page + 1;
@@ -109,7 +113,7 @@ return (
 
     <Container className="d-flex justify-content-center ">
       <div className="w-100">
-      <h1>predb</h1><Link to="/about"><small>About</small></Link> 
+      <h1 onClick={resetSearch}><Link to="/" style={{color: 'white', 'text-decoration': 'none'}}>predb</Link></h1><Link to="/about"><small>About</small></Link> 
       {"\n"}
       | {"\n"}<Link to="/api"><small>API Docs</small></Link> 
       
