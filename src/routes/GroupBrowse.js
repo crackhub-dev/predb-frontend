@@ -67,7 +67,7 @@ export default function GroupBrowse() {
         <h1>predb</h1>  
         <p className="text-success">You are browsing all releases from the group <span className="text-warning"><b>{params.grp}</b></span></p> 
         <form className="search-form" onSubmit={getSearch}>
-          <input type="text" className="search-bar form-control" value={params.cat} onChange={updateSearch} placeholder="Start typing to search for releases!"/>
+          <input type="text" className="search-bar form-control" value={params.grp} onChange={updateSearch} placeholder="Start typing to search for releases!" readOnly/>
           <Link to="/"> <Button className="btn btn-danger">Reset Search</Button></Link>
   
         </form>
