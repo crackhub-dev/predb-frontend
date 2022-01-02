@@ -19,6 +19,7 @@ export default function Api() {
                     <li><Badge>GET</Badge> <a href="https://BACKEND_API_URL/api/search">/api/search</a> <b>Takes <code>?p=</code>, <code>&l=</code> and <code>&q=</code> args. Meaning page, limit and query.</b></li>
                     <li><Badge>GET</Badge> <a href="https://BACKEND_API_URL/api/getDate/<id>">/api/getDate/:id</a> <b>Takes <code>id</code> param. Returns human readable pre date.</b></li>
                     <li><Badge>GET</Badge> <a href="https://BACKEND_API_URL/api/cat">/api/cat</a> <b>Takes <code>?p=</code>, <code>&l=</code> and <code>&q=</code> args. Meaning page, limit and query.</b></li>
+                    <li><Badge>GET</Badge> <a href="https://BACKEND_API_URL/api/grp">/api/grp</a> <b>Takes <code>?p=</code>, <code>&l=</code> and <code>&q=</code> args. Meaning page, limit and query.</b></li>
                     <li><Badge>GET</Badge> <a href="https://BACKEND_API_URL/api/length">/api/length</a> <b>Takes no arguments/params. Returns number releases in DB.</b></li>
                 </ul>
                 <p><small><i>{"code by crackhub213"}</i></small></p>
