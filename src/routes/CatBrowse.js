@@ -25,7 +25,7 @@ function CatBrowse() {
     }
   } , [page])
   const getData = async ()=>{
-    const response = await fetch(`https://api.predb.xyz/api/cat?q=${params.cat}&p=${page}&l=50`);
+    const response = await fetch(`https://BACKEND_API_URL/api/cat?q=${params.cat}&p=${page}&l=50`);
     const data = await response.json();
     setReleases(data);
     

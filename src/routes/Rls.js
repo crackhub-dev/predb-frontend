@@ -9,12 +9,12 @@ export default function Rls() {
     const [release, setRelease] = useState([]);
     const [date, setDate] = useState([]);
     const getData = async ()=>{
-        const response = await fetch(`https://api.predb.xyz/api/rls/${params.id}`);
+        const response = await fetch(`https://BACKEND_API_URL/api/rls/${params.id}`);
         const data = await response.json();      
         setRelease(data);
       };
     const getDate = async ()=>{
-        const response = await fetch(`https://api.predb.xyz/api/getDate/${params.id}`);
+        const response = await fetch(`https://BACKEND_API_URL/api/getDate/${params.id}`);
         const data = await response.json();      
         setDate(data.date);
       }

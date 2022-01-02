@@ -67,13 +67,13 @@ function App() {
 
   const getData = async ()=>{
     if(query === '') {
-      const response = await fetch(`https://api.predb.xyz/api/releases?p=${page}&l=50`);
+      const response = await fetch(`https://BACKEND_API_URL/api/releases?p=${page}&l=50`);
       const data = await response.json();
       setReleases(data);
 
     }
     if(query !== '') {
-      const response = await fetch(`https://api.predb.xyz/api/search?q=${query}&p=${page}&l=50`);
+      const response = await fetch(`https://BACKEND_API_URL/api/search?q=${query}&p=${page}&l=50`);
       const data = await response.json();
       setReleases(data);
     }
@@ -111,7 +111,7 @@ function App() {
     setPage(prevp);
   }
   const getReleaseCount = async () =>{
-    const response = await fetch(`https://api.predb.xyz/api/length`);
+    const response = await fetch(`https://BACKEND_API_URL/api/length`);
     const data = await response.json();
     setReleaseCount(data);
   }
