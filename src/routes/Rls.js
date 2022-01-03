@@ -39,6 +39,7 @@ export default function Rls() {
                 <div class="card-body">
                 <h4 className="card-title" >{release.rls}</h4>
                   <h6 class="card-subtitle mb-2">Category: <Link to={"/cat/" + release.cat}>{release.cat}</Link></h6>
+                  <h6 class="card-subtitle mb-2">Group: <Link to={"/grp/" + release.grp}>{release.grp}</Link></h6>
                 <h6 class="card-subtitle mb-2">Pre At: <b>{date}</b></h6>
                   <a href={"https://www.srrdb.com/release/details/" + release.rls} target="_blank"  rel="noreferrer" class="card-link"><button className="btn btn-success">srrDB</button></a>
                   <a href={"https://dup3.me/includes/image.php?x=" + release.rls + "&z=1"} target="_blank"  rel="noreferrer" class="card-link"><button className="btn btn-light">dup3.me NFO Image</button></a>
