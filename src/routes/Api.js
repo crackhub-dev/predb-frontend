@@ -11,7 +11,7 @@ export default function Api() {
                 <h1>API Docs</h1>
                 <p><i>PreDB.xyz API</i></p>
                 <p>All endpoints return a JSON response</p>
-                <h5>Base URL: <code>BACKEND_API_URL</code> (SSL optional)</h5>
+                <h5>Base URL: <code>BACKEND_API_URL</code></h5>
                 <h4>API Endpoints:</h4>
                 <ul>
                     <li><Badge>GET</Badge> <a href="https://BACKEND_API_URL/api/releases">/api/releases</a></li> <b>Takes <code>?p=</code> and <code>&l=</code> meaning page & limit.</b>
